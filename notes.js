@@ -32,18 +32,19 @@ var addNote = (title, body) => {
 };
 
 var getAll = () => {
-    console.log('Getting all notes');
+    return fetchNote();
 };
 
 var getNote = (title) => {
-    console.log('Getting Note', title);
+    var notes = fetchNote();
+    return notes.filter((note) => note.title === title);
 };
 
 var remNote = (title) => {
     var notes = fetchNote();
-    var filteredNotes = notes.filter((note) => note.title != title);
-    if (notes.length != filteredNotes.length) {
-        notes.filter((note) => note.title != title);
+    var filteredNotes = notes.filter((note) => note.title !== title);
+    saveNote(filteredNotes);
+    if (notes.length !== filteredNotes.length) {
         return true;
     } else {
         return false;

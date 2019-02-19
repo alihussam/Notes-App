@@ -16,17 +16,25 @@ if (command === 'add') {
 } 
 else if (command === "read") 
 {
+    //getNote returns a JSON object
     var content = notes.getNote(argv.title);
-    if(content){
+    if(content.length > 0){
         console.log(content);
+    }else {
+        console.log(`\'${argv.title}\' note not found!`);
     }
-} 
+}
 else if (command === "rem") 
 {
     var message = notes.remNote(argv.title) 
             ? `\'${argv.title}\' note removed` 
             : `\'${argv.title}\' note NOT removed`;
     console.log(message);
+}
+else if (command === "list"){
+    var holdNotes = notes.getAll()
+    console.log("ALL NOTES:");
+    holdNotes.forEach((note) => console.log(note));
 } 
 else 
 {
