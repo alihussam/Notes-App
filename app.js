@@ -9,7 +9,9 @@ const command = argv._[0];
 /*Program logic starts here*/
 if (command === 'add') {
     if(notes.addNote(argv.title,argv.body)){
-        console.log("add SUCCESS ");
+        console.log(`\'${argv.title}\' note created!`);
+    }else{
+        console.log("Note creation failed!");
     }
 } 
 else if (command === "read") 
@@ -21,7 +23,10 @@ else if (command === "read")
 } 
 else if (command === "rem") 
 {
-    notes.remNote(argv.title);
+    var message = notes.remNote(argv.title) 
+            ? `\'${argv.title}\' note removed` 
+            : `\'${argv.title}\' note NOT removed`;
+    console.log(message);
 } 
 else 
 {
